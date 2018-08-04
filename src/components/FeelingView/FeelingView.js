@@ -1,12 +1,15 @@
+// react, react-redux, and local components
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import StyledNextButton from '../NextButton/NextButton'
+
+// material ui components
 import { withStyles } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import { connect } from 'react-redux';
-import StyledNextButton from '../NextButton/NextButton'
 
 const styles = () => ({
   container: {
@@ -18,8 +21,6 @@ const styles = () => ({
     marginBottom: '1rem'
   }
 })
-
-
 class FeelingView extends Component {
   constructor(props) {
     super(props);
@@ -84,4 +85,5 @@ class FeelingView extends Component {
 }
 
 const styledFeelingView = (withStyles(styles)(FeelingView))
+
 export default connect()(styledFeelingView);
