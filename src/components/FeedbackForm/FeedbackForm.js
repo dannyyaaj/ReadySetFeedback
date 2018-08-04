@@ -17,20 +17,11 @@ const styles = () => ({
   },
   formTitle: {
     color: 'black',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   }
 })
 
 class FeedbackForm extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     feeling: this.props.feelingResponse || '',
-  //     comprehension: this.props.comprehensionResponse || '',
-  //     support: this.props.supportResponse || '',
-  //     comments: this.props.commentsResponse || ''
-  //   }
-  // }
 
   render() {
     console.log(this.props.view)
@@ -40,7 +31,7 @@ class FeedbackForm extends Component {
           <FormControl component="fieldset">
             <FormLabel component="legend"
               className={this.props.classes.formTitle}
-            >How Are You Feeling Today?</FormLabel>
+            >{this.props.formTitle}</FormLabel>
             <RadioGroup
               name={this.props.view}
               value={this.props.view}
