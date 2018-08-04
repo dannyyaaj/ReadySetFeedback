@@ -6,6 +6,7 @@ class FeelingView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      formTitle: `How are you feeling today?`,
       actionType: 'STORE_FEELING',
       feelingResponse: '',
       lowestScoreLabel: `1 - I'm very stressed`,
@@ -43,6 +44,7 @@ class FeelingView extends Component {
     return (
       <div>
         <FeedbackForm
+          formTitle={this.state.formTitle}
           view={this.state.feelingResponse}
           handleChangeForResponse={this.handleChangeForResponse}
           lowestScoreLabel={this.state.lowestScoreLabel}

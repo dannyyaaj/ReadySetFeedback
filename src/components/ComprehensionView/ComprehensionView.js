@@ -6,6 +6,7 @@ class ComprehensionView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      formTitle: `How well did you understand today's material?`,
       actionType: 'STORE_COMPREHENSION',
       comprehensionResponse: '',
       lowestScoreLabel: `1 - I'm totally lost`,
@@ -43,11 +44,12 @@ class ComprehensionView extends Component {
     return (
       <div>
         <FeedbackForm
+          formTitle={this.state.formTitle}
           view={this.state.comprehensionResponse}
           handleChangeForResponse={this.handleChangeForResponse}
           lowestScoreLabel={this.state.lowestScoreLabel}
-          highestScoreLabel={this.state.highestScoreLabel} 
-          />
+          highestScoreLabel={this.state.highestScoreLabel}
+        />
         <NextButton handleNextButton={this.handleNextButton} />
       </div>
     )
