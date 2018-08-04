@@ -5,7 +5,6 @@ class ComprehensionView extends Component {
     return (
       <div>
         <h1>Comprehension</h1>
-
       </div>
     )
   }

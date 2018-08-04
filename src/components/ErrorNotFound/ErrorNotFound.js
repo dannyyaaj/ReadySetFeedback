@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 
 class ErrorNotFound extends Component {
 
-
   // redirect user to home page
   goHome = () => this.props.history.push('/');
-
 
   render() {
     console.log();
