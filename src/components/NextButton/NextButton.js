@@ -1,10 +1,9 @@
 // react, react-redux, and local components
 import React, { Component } from 'react';
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-
 // material ui components
 import { withStyles } from '@material-ui/core';
-import Button from '@material-ui/core/Button'
+import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import Button from '@material-ui/core/Button';
 
 const styles = () => ({
   button: {
@@ -13,7 +12,6 @@ const styles = () => ({
 })
 class NextButton extends Component {
   render() {
-    console.log(this.props)
     return (
       <Button
         variant="contained"
