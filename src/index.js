@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger'
 
 const initialState = {
-  id: undefined,
   feeling: '',
   comprehension: '',
   support: '',
