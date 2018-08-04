@@ -1,7 +1,6 @@
 // react, react-redux, and local components
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 // material ui components
 import { withStyles } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
@@ -20,7 +19,6 @@ const styles = () => ({
     marginBottom: '1rem',
   }
 })
-
 class FeedbackForm extends Component {
 
   render() {
