@@ -20,15 +20,32 @@ const styles = () => ({
 
 
 class FeelingView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      feelingResponse: ''
+    }
+  }
+  handleChangeForResponse = (event) => {
+    this.setState({
+      feelingResponse: event.target.value
+    })
+  }
+
   render() {
+    console.log(this.state.feelingResponse)
     return (
       <div>
         <div className={this.props.classes.container}>
           <FormControl component="fieldset">
             <FormLabel component="legend"
-            className={this.props.classes.formTitle}
+              className={this.props.classes.formTitle}
             >How Are You Feeling Today?</FormLabel>
-            <RadioGroup>
+            <RadioGroup
+            name="feelingResponse"
+            value={this.state.feelingResponse}
+            onChange={this.handleChangeForResponse}
+            >
               <FormControlLabel value="1" control={<Radio />} label="1" />
               <FormControlLabel value="2" control={<Radio />} label="2" />
               <FormControlLabel value="3" control={<Radio />} label="3" />
