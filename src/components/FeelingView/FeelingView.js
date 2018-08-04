@@ -1,7 +1,7 @@
 // react, react-redux, and local components
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import StyledNextButton from '../NextButton/NextButton'
+import NextButton from '../NextButton/NextButton'
 
 // material ui components
 import { withStyles } from '@material-ui/core';
@@ -77,13 +77,14 @@ class FeelingView extends Component {
             </FormControl>
           </form>
         </div>
-        <StyledNextButton handleNextButton={this.handleNextButton} />
+        <NextButton handleNextButton={this.handleNextButton} />
       </div>
 
     )
   }
 }
 
-const styledFeelingView = (withStyles(styles)(FeelingView))
+const StyledFeelingView = 
+withStyles(styles)(FeelingView)
 
-export default connect()(styledFeelingView);
+export default connect()(StyledFeelingView);
