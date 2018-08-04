@@ -1,13 +1,57 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
+import NextButton from '../NextButton/NextButton';
 class ComprehensionView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      actionType: 'STORE_COMPREHENSION',
+      comprehensionResponse: '',
+      lowestScoreLabel: `1 - I'm totally lost`,
+      highestScoreLabel: `5 - I've got this!`
+    }
+  }
+
+  handleChangeForResponse = (event) => {
+    this.setState({
+      ...this.state,
+      comprehensionResponse: event.target.value
+    })
+  }
+
+  handleNextButton = (event) => {
+    event.preventDefault();
+    // check if user responded
+    switch (this.state.comprehensionResponse) {
+      case undefined || null || '':
+        alert('Please select a response before moving on')
+        break;
+      default:
+        // send comprehension response to redux
+        this.props.dispatch(
+          {
+            type: this.state.actionType,
+            payload: this.state.comprehensionResponse
+          },
+          this.props.history.push('/3')
+        )
+    }
+  }
+
   render() {
     return (
       <div>
-        <h1>Comprehension</h1>
+        <FeedbackForm
+          view={this.state.comprehensionResponse}
+          handleChangeForResponse={this.handleChangeForResponse}
+          lowestScoreLabel={this.state.lowestScoreLabel}
+          highestScoreLabel={this.state.highestScoreLabel} 
+          />
+        <NextButton handleNextButton={this.handleNextButton} />
       </div>
     )
   }
 }
 
-export default ComprehensionView
+export default connect()(ComprehensionView)
