@@ -17,7 +17,7 @@ const initialState = {
 
 const feedbackResponse = (state = initialState, action) => {
   switch (action.type) {
-    case 'STORE_FEELINGS':
+    case 'STORE_FEELING':
       return { ...state, feeling: action.payload }
     case 'STORE_COMPREHENSION':
       return { ...state, comprehension: action.payload }
