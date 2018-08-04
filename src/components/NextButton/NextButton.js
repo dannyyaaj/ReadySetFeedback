@@ -11,12 +11,15 @@ const styles = () => ({
 
 class NextButton extends Component {
   render() {
+    console.log(this.props)
     return (
       <Button
         variant="contained"
         color="secondary"
         className={this.props.classes.button}
+        onClick={this.props.handleNextButton}
       >
+
         NEXT
           <NavigateNextIcon />
       </Button>

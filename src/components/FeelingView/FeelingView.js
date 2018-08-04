@@ -27,35 +27,56 @@ class FeelingView extends Component {
       feelingResponse: ''
     }
   }
+
   handleChangeForResponse = (event) => {
     this.setState({
       feelingResponse: event.target.value
     })
   }
 
+  handleNextButton = (event) => {
+    event.preventDefault();
+    // check if user responded
+    switch (this.state.feelingResponse) {
+      case undefined || null || '':
+        alert('Please select a response before moving on')
+        break;
+      default:
+        this.props.dispatch(
+          {
+            type: 'STORE_FEELING',
+            payload: this.state
+          },
+          this.props.history.push('/2')
+        )
+    }
+  }
+
   render() {
-    console.log(this.state.feelingResponse)
+    console.log()
     return (
       <div>
         <div className={this.props.classes.container}>
-          <FormControl component="fieldset">
-            <FormLabel component="legend"
-              className={this.props.classes.formTitle}
-            >How Are You Feeling Today?</FormLabel>
-            <RadioGroup
-            name="feelingResponse"
-            value={this.state.feelingResponse}
-            onChange={this.handleChangeForResponse}
-            >
-              <FormControlLabel value="1" control={<Radio />} label="1" />
-              <FormControlLabel value="2" control={<Radio />} label="2" />
-              <FormControlLabel value="3" control={<Radio />} label="3" />
-              <FormControlLabel value="4" control={<Radio />} label="4" />
-              <FormControlLabel value="5" control={<Radio />} label="5" />
-            </RadioGroup>
-          </FormControl>
+          <form>
+            <FormControl component="fieldset">
+              <FormLabel component="legend"
+                className={this.props.classes.formTitle}
+              >How Are You Feeling Today?</FormLabel>
+              <RadioGroup
+                name="feelingResponse"
+                value={this.state.feelingResponse}
+                onChange={this.handleChangeForResponse}
+              >
+                <FormControlLabel value="1" control={<Radio />} label="1 - I'm very stressed" />
+                <FormControlLabel value="2" control={<Radio />} label="2" />
+                <FormControlLabel value="3" control={<Radio />} label="3" />
+                <FormControlLabel value="4" control={<Radio />} label="4" />
+                <FormControlLabel value="5" control={<Radio />} label="5 - I'm feeling great!" />
+              </RadioGroup>
+            </FormControl>
+          </form>
         </div>
-        <StyledNextButton />
+        <StyledNextButton handleNextButton={this.handleNextButton} />
       </div>
 
     )
