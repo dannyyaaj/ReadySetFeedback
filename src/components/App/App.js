@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
+import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import FeelingView from '../FeelingView/FeelingView';
+import ComprehensionView from '../ComprehensionView/ComprehensionView';
+import ErrorNotFound from '../ErrorNotFound/ErrorNotFound';
+import Header from '../Header/Header';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Feedback!</h1>
-          <h4><i>Don't forget it!</i></h4>
-        </header>
-        <br/>
-      </div>
+      <Router>
+        <div className="App">
+        <Header />
+          <Switch>
+            <Redirect exact from="/" to="/1" />
+            <Route exact path="/1" component={FeelingView} />
+            <Route exact path="/2" component={ComprehensionView} />
+            <Route component={ErrorNotFound} />
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
