@@ -39,16 +39,12 @@ class CommentView extends Component {
     // send all responses to database
     axios.post('/api/feedback', this.props.feedback)
       .then((response) => {
-        console.log(response)
-        this.props.history.push('/admin')
+        this.props.history.push('/5')
       })
-        .catch((error) => {
-          console.log(error);
-        })
-
-
+      .catch((error) => {
+        console.log(error);
+      })
   }
-
 
   render() {
     console.log(this.props.feedback)
