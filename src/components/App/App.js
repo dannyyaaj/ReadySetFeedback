@@ -7,6 +7,7 @@ import SupportView from '../SupportView/SupportView';
 import CommentView from '../CommentView/CommentView';
 import ErrorNotFound from '../ErrorNotFound/ErrorNotFound';
 import Header from '../Header/Header';
+import AdminView from '../AdminView/AdminView';
 
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
             <Route exact path="/2" component={ComprehensionView} />
             <Route exact path="/3" component={SupportView} />
             <Route exact path="/4" component={CommentView} />
+            <Route exact path="/admin" component={AdminView} />
             <Route component={ErrorNotFound} />
           </Switch>
         </div>
