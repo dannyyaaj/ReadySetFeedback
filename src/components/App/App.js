@@ -4,6 +4,7 @@ import { HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom'
 import FeelingView from '../FeelingView/FeelingView';
 import ComprehensionView from '../ComprehensionView/ComprehensionView';
 import SupportView from '../SupportView/SupportView';
+import CommentView from '../CommentView/CommentView';
 import ErrorNotFound from '../ErrorNotFound/ErrorNotFound';
 import Header from '../Header/Header';
 
@@ -19,6 +20,7 @@ class App extends Component {
             <Route exact path="/1" component={FeelingView} />
             <Route exact path="/2" component={ComprehensionView} />
             <Route exact path="/3" component={SupportView} />
+            <Route exact path="/4" component={CommentView} />
             <Route component={ErrorNotFound} />
           </Switch>
         </div>
