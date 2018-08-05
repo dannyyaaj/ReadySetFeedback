@@ -19,7 +19,7 @@ class NextButton extends Component {
         className={this.props.classes.button}
         onClick={this.props.handleNextButton}
       >
-        NEXT
+        Next
           <NavigateNextIcon />
       </Button>
     )
