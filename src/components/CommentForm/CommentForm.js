@@ -3,35 +3,52 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // material ui components
 import { withStyles } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import TextField from '@material-ui/core/TextField';
 
 const styles = () => ({
   container: {
+    textAlign: 'center',
+    margin: '1.5rem 0'
+  },
+  formContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
+    flexWrap: 'wrap'
+  },
+  formTitle: {
+    color: 'black',
+    marginBottom: '1rem',
   },
   textField: {
-    width: 200,
+    width: 1000,
   }
 });
-
 
 class CommentForm extends Component {
   render() {
     return (
-      <div>
-        <form>
-          <FormControl>
-            <FormLabel>
+      <div className={this.props.classes.container}>
+        <form
+          onSubmit={this.handleChangeForResponse}
+          className={this.props.formContainer}
+        >
+          <FormControl component="fieldset">
+            <FormLabel
+              className={this.props.classes.formTitle}
+            >
               Any comments you want to leave?
             </FormLabel>
             <TextField
+              onChange={this.props.handleChangeForResponse}
               label="We'd love to hear from you."
+              placeholder="Let us know what you're thinking."
+              inputProps={{
+                'aria-label': 'Description',
+              }}
               multiline
               className={this.props.textField}
+              fullWidth
               margin="normal"
             />
           </FormControl>
