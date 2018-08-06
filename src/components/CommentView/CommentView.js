@@ -16,29 +16,53 @@ class CommentView extends Component {
       formTitle: `How are you feeling today?`,
       storeComments: 'STORE_COMMENTS',
       clearResponses: 'CLEAR_RESPONSE',
+      commentResponse: ''
     }
   }
 
   handleChangeForResponse = (event) => {
+    this.setState({
+      commentResponse: event.target.value
+    })
+  }
+
+  storeCommentInRedux = () => {
     // send comment to redux
-    this.props.dispatch(
-      {
-        type: this.state.storeComments,
-        payload: event.target.value
+    return new Promise((resolve, reject) => {
+      if (this.state.feedback !== this.props.feedback.comments) {
+        resolve(
+          this.props.dispatch(
+            {
+              type: this.state.storeComments,
+              payload: this.state.commentResponse
+            }
+          )
+        )
+      } else {
+        reject(
+          this.postResponseToDatabase()
+        )
       }
-    )
+    })
+
   }
 
   handleSubmitButton = (event) => {
     event.preventDefault();
-    this.postResponseToDatabase();
+    this.storeCommentInRedux()
+      .then(data => {
+        console.log(data, 'Promise successful')
+        this.postResponseToDatabase();
+      })
+      .catch(error => {
+        console.log(error, 'error in Promise')
+      })
   }
 
   postResponseToDatabase = () => {
     // send all responses to database
     axios.post('/api/feedback', this.props.feedback)
       .then((response) => {
-        console.log('submitted', this.props.feedback)
         this.props.dispatch({
           type: this.state.clearResponses
         })
@@ -46,13 +70,11 @@ class CommentView extends Component {
         this.props.history.push('/5')
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error, 'error in post request to DB');
       })
   }
 
   render() {
-    console.log(this.state.commentResponse)
-    console.log(this.props.feedback)
     return (
       <div>
         <CommentForm
