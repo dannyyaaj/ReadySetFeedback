@@ -23,7 +23,7 @@ const styles = () => ({
   textField: {
     width: 1000,
   }
-});git 
+});
 class CommentForm extends Component {
   render() {
     return (
