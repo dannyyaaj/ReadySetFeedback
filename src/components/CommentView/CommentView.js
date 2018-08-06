@@ -29,17 +29,14 @@ class CommentView extends Component {
   storeCommentInRedux = () => {
     // send comment to redux
     return new Promise((resolve, reject) => {
-      (this.state.feedback !== this.props.feedback.comments) ?
         resolve(
-          this.props.dispatch(
-            {
+          this.props.dispatch({
               type: this.state.storeComments,
               payload: this.state.commentResponse
-            }
-          )
-        ) :
+            })
+        )
         reject(
-          this.postResponseToDatabase()
+          console.log('dispatch did not go through')
         )
     })
   }
@@ -48,7 +45,6 @@ class CommentView extends Component {
     event.preventDefault();
     this.storeCommentInRedux()
       .then(data => {
-        console.log(data, 'Promise successful')
         this.postResponseToDatabase();
       })
       .catch(error => {
@@ -72,6 +68,8 @@ class CommentView extends Component {
   }
 
   render() {
+    console.log(this.props.feedback, 'redux state');
+    console.log(this.state.commentResponse,'local state')
     return (
       <div>
         <CommentForm
