@@ -3,6 +3,19 @@ import { connect } from 'react-redux';
 import CommentForm from '../CommentForm/CommentForm';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import axios from 'axios';
+import { Card, CardActions, CardContent } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = {
+  card: {
+    margin: '0 auto',
+    width: '50%',
+    backgroundColor: '#DCEFF5',
+  },
+  cardActions: {
+    padding: '0 40%'
+  },
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -13,7 +26,6 @@ class CommentView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formTitle: `How are you feeling today?`,
       storeComments: 'STORE_COMMENTS',
       clearResponses: 'CLEAR_RESPONSE',
       commentResponse: ''
@@ -29,15 +41,15 @@ class CommentView extends Component {
   storeCommentInRedux = () => {
     // send comment to redux
     return new Promise((resolve, reject) => {
-        resolve(
-          this.props.dispatch({
-              type: this.state.storeComments,
-              payload: this.state.commentResponse
-            })
-        )
-        reject(
-          console.log('dispatch did not go through')
-        )
+      resolve(
+        this.props.dispatch({
+          type: this.state.storeComments,
+          payload: this.state.commentResponse
+        })
+      )
+      reject(
+        console.log('dispatch did not go through')
+      )
     })
   }
 
@@ -69,17 +81,25 @@ class CommentView extends Component {
 
   render() {
     console.log(this.props.feedback, 'redux state');
-    console.log(this.state.commentResponse,'local state')
+    console.log(this.state.commentResponse, 'local state')
     return (
-      <div>
-        <CommentForm
-          handleChangeForResponse={this.handleChangeForResponse}
-        />
-        <SubmitButton
-          handleSubmitButton={this.handleSubmitButton}
-        />
-      </div>
+      <Card className={this.props.classes.card}>
+        <CardContent>
+          <CommentForm
+            handleChangeForResponse={this.handleChangeForResponse}
+          />
+          <CardActions className={this.props.classes.cardActions}>
+            <SubmitButton
+              handleSubmitButton={this.handleSubmitButton}
+            />
+          </CardActions>
+        </CardContent>
+      </Card>
     )
   }
 }
-export default connect(mapStateToProps)(CommentView);
+
+const StyledCommentView = withStyles(styles)(CommentView)
+
+
+export default connect(mapStateToProps)(StyledCommentView);
