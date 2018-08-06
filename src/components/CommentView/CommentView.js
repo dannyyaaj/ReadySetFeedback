@@ -29,7 +29,7 @@ class CommentView extends Component {
   storeCommentInRedux = () => {
     // send comment to redux
     return new Promise((resolve, reject) => {
-      if (this.state.feedback !== this.props.feedback.comments) {
+      (this.state.feedback !== this.props.feedback.comments) ?
         resolve(
           this.props.dispatch(
             {
@@ -37,14 +37,11 @@ class CommentView extends Component {
               payload: this.state.commentResponse
             }
           )
-        )
-      } else {
+        ) :
         reject(
           this.postResponseToDatabase()
         )
-      }
     })
-
   }
 
   handleSubmitButton = (event) => {
