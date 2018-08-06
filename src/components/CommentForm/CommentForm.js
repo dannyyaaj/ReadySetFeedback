@@ -10,21 +10,20 @@ import TextField from '@material-ui/core/TextField';
 const styles = () => ({
   container: {
     textAlign: 'center',
-    margin: '1.5rem 0'
-  },
-  formContainer: {
-    display: 'flex',
-    flexWrap: 'wrap'
+    margin: '1.5rem auto',
+    padding: '1.5rem 2rem',
+    backgroundColor: 'white',
+    height: '16.5rem',
+    width: '35rem'
   },
   formTitle: {
     color: 'black',
-    marginBottom: '1rem',
+    marginBottom: '2.5rem',
   },
   textField: {
     width: 1000,
   }
-});
-
+});git 
 class CommentForm extends Component {
   render() {
     return (
