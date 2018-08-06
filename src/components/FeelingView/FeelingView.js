@@ -4,6 +4,12 @@ import NextButton from '../NextButton/NextButton'
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import { Card, CardActions, CardContent } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   card: {
@@ -23,7 +29,8 @@ class FeelingView extends Component {
       actionType: 'STORE_FEELING',
       feelingResponse: '',
       lowestScoreLabel: `1 - I'm very stressed`,
-      highestScoreLabel: `5 - I'm feeling great!`
+      highestScoreLabel: `5 - I'm feeling great!`,
+      responseModalIsOpen: false
     }
   }
 
@@ -39,7 +46,9 @@ class FeelingView extends Component {
     // check if user responded
     switch (this.state.feelingResponse) {
       case undefined || null || '':
-        alert('Please select a response before moving on')
+        this.setState({
+          responseModalIsOpen: true
+        })
         break;
       default:
         // send feeling response to redux
@@ -51,6 +60,12 @@ class FeelingView extends Component {
           this.props.history.push('/2')
         )
     }
+  }
+
+  closeResponseModal = () => {
+    this.setState({
+      responseModalIsOpen: false
+    })
   }
 
   render() {
@@ -68,6 +83,24 @@ class FeelingView extends Component {
             <NextButton handleNextButton={this.handleNextButton} />
           </CardActions>
         </CardContent>
+        <Dialog
+          open={this.state.responseModalIsOpen}
+          onClose={this.closeResponseModal}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Wait"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Please respond before moving forward.
+              </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeResponseModal} color="primary">
+              Okay
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Card>
     )
   }

@@ -4,6 +4,12 @@ import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import NextButton from '../NextButton/NextButton';
 import { Card, CardActions, CardContent } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   card: {
@@ -15,7 +21,6 @@ const styles = {
     padding: '0 40%'
   },
 }
-
 class ComprehensionView extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +29,8 @@ class ComprehensionView extends Component {
       actionType: 'STORE_COMPREHENSION',
       comprehensionResponse: '',
       lowestScoreLabel: `1 - I'm totally lost`,
-      highestScoreLabel: `5 - I've got this!`
+      highestScoreLabel: `5 - I've got this!`,
+      responseModalIsOpen: false
     }
   }
 
@@ -40,7 +46,9 @@ class ComprehensionView extends Component {
     // check if user responded
     switch (this.state.comprehensionResponse) {
       case undefined || null || '':
-        alert('Please select a response before moving on')
+        this.setState({
+          responseModalIsOpen: true
+        })
         break;
       default:
         // send comprehension response to redux
@@ -54,25 +62,50 @@ class ComprehensionView extends Component {
     }
   }
 
+  closeResponseModal = () => {
+    this.setState({
+      responseModalIsOpen: false
+    })
+  }
+
   render() {
     return (
-        <Card className={this.props.classes.card}>
-          <CardContent>
-            <FeedbackForm
-              formTitle={this.state.formTitle}
-              view={this.state.comprehensionResponse}
-              handleChangeForResponse={this.handleChangeForResponse}
-              lowestScoreLabel={this.state.lowestScoreLabel}
-              highestScoreLabel={this.state.highestScoreLabel}
-            />
-            <CardActions className={this.props.classes.cardActions}>
-              <NextButton handleNextButton={this.handleNextButton} />
-            </CardActions>
-          </CardContent>
-        </Card>
+      <Card className={this.props.classes.card}>
+        <CardContent>
+          <FeedbackForm
+            formTitle={this.state.formTitle}
+            view={this.state.comprehensionResponse}
+            handleChangeForResponse={this.handleChangeForResponse}
+            lowestScoreLabel={this.state.lowestScoreLabel}
+            highestScoreLabel={this.state.highestScoreLabel}
+          />
+          <CardActions className={this.props.classes.cardActions}>
+            <NextButton handleNextButton={this.handleNextButton} />
+          </CardActions>
+        </CardContent>
+        <Dialog
+          open={this.state.responseModalIsOpen}
+          onClose={this.closeResponseModal}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">{"Wait"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Please respond before moving forward.
+              </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.closeResponseModal} color="primary">
+              Okay
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Card>
     )
   }
 }
+
 const StyledComprehensionView = withStyles(styles)(ComprehensionView)
 
 export default connect()(StyledComprehensionView);

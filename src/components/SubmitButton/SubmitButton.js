@@ -10,7 +10,8 @@ const styles = () => ({
     padding: '0 .75rem 0 1.45rem'
   },
   icon: {
-    padding: '0 0 0.3rem 0'
+    padding: '0 0 0.3rem 0',
+    display: 'inline-flex'
   }
 })
 class SubmitButton extends Component {
