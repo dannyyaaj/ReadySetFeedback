@@ -11,6 +11,7 @@ class AdminTableBody extends Component {
       feedbackResponses: []
     }
   }
+  
   componentDidMount() {
     axios.get('/api/feedback')
       .then(response => {
