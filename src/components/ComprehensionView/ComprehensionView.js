@@ -2,6 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import NextButton from '../NextButton/NextButton';
+import { Card, CardActions, CardContent } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = {
+  card: {
+    margin: '0 auto',
+    width: '50%',
+    backgroundColor: '#DCEFF5',
+  },
+  cardActions: {
+    padding: '0 40%'
+  },
+}
+
 class ComprehensionView extends Component {
   constructor(props) {
     super(props);
@@ -42,18 +56,23 @@ class ComprehensionView extends Component {
 
   render() {
     return (
-      <div>
-        <FeedbackForm
-          formTitle={this.state.formTitle}
-          view={this.state.comprehensionResponse}
-          handleChangeForResponse={this.handleChangeForResponse}
-          lowestScoreLabel={this.state.lowestScoreLabel}
-          highestScoreLabel={this.state.highestScoreLabel}
-        />
-        <NextButton handleNextButton={this.handleNextButton} />
-      </div>
+        <Card className={this.props.classes.card}>
+          <CardContent>
+            <FeedbackForm
+              formTitle={this.state.formTitle}
+              view={this.state.comprehensionResponse}
+              handleChangeForResponse={this.handleChangeForResponse}
+              lowestScoreLabel={this.state.lowestScoreLabel}
+              highestScoreLabel={this.state.highestScoreLabel}
+            />
+            <CardActions className={this.props.classes.cardActions}>
+              <NextButton handleNextButton={this.handleNextButton} />
+            </CardActions>
+          </CardContent>
+        </Card>
     )
   }
 }
+const StyledComprehensionView = withStyles(styles)(ComprehensionView)
 
-export default connect()(ComprehensionView)
+export default connect()(StyledComprehensionView);

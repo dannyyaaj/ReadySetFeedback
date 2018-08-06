@@ -15,7 +15,7 @@ class NextButton extends Component {
     return (
       <Button
         variant="contained"
-        color="secondary"
+        color="primary"
         className={this.props.classes.button}
         onClick={this.props.handleNextButton}
       >
