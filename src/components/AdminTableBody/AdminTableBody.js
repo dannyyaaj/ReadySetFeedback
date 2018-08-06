@@ -3,6 +3,7 @@ import axios from 'axios';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 
 class AdminTableBody extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class AdminTableBody extends Component {
       feedbackResponses: []
     }
   }
-  
+
   componentDidMount() {
     axios.get('/api/feedback')
       .then(response => {
@@ -34,6 +35,12 @@ class AdminTableBody extends Component {
             <TableCell>{feedback.understanding}</TableCell>
             <TableCell>{feedback.support}</TableCell>
             <TableCell>{feedback.comments}</TableCell>
+            <TableCell>
+              <DeleteForever
+                color="secondary"
+                
+              />
+            </TableCell>
           </TableRow>
         )
       })

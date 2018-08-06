@@ -27,6 +27,7 @@ class AdminView extends Component {
               <TableCell>Comprehension</TableCell>
               <TableCell>Support</TableCell>
               <TableCell>Comments</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <AdminTableBody />
