@@ -5,7 +5,7 @@ import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import logger from 'redux-logger'
+import logger from 'redux-logger';
 
 const initialState = {
   feeling: '',
@@ -24,6 +24,8 @@ const feedbackResponse = (state = initialState, action) => {
       return { ...state, support: action.payload }
     case 'STORE_COMMENTS':
       return { ...state, comments: action.payload }
+    case 'CLEAR_RESPONSE':
+      return { initialState }
     default:
       return state
   }
