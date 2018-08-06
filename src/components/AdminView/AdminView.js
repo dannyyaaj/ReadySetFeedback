@@ -25,7 +25,6 @@ let styles = {
 
 class AdminView extends Component {
 
-
   render() {
     return (
       <div className={this.props.classes.divContainer}>
