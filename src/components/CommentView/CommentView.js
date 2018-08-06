@@ -14,31 +14,35 @@ class CommentView extends Component {
     super(props);
     this.state = {
       formTitle: `How are you feeling today?`,
-      actionType: 'STORE_COMMENTS',
-      commentResponse: '',
+      storeComments: 'STORE_COMMENTS',
+      clearResponses: 'CLEAR_RESPONSE',
     }
   }
+
   handleChangeForResponse = (event) => {
-    this.setState({
-      ...this.state,
-      commentResponse: event.target.value
-    })
+    // send comment to redux
+    this.props.dispatch(
+      {
+        type: this.state.storeComments,
+        payload: event.target.value
+      }
+    )
   }
 
   handleSubmitButton = (event) => {
     event.preventDefault();
-    // send feeling response to redux
-    this.props.dispatch(
-      {
-        type: this.state.actionType,
-        payload: this.state.commentResponse
-      }
-      // this.props.history.push('/')
-    )
+    this.postResponseToDatabase();
+  }
 
+  postResponseToDatabase = () => {
     // send all responses to database
     axios.post('/api/feedback', this.props.feedback)
       .then((response) => {
+        console.log('submitted', this.props.feedback)
+        this.props.dispatch({
+          type: this.state.clearResponses
+        })
+        // redirect user to home page
         this.props.history.push('/5')
       })
       .catch((error) => {
@@ -47,6 +51,7 @@ class CommentView extends Component {
   }
 
   render() {
+    console.log(this.state.commentResponse)
     console.log(this.props.feedback)
     return (
       <div>
