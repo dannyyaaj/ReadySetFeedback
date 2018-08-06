@@ -7,22 +7,32 @@ import TableRow from '@material-ui/core/TableRow';
 import { withStyles } from "@material-ui/core/styles";
 
 
+
 let styles = {
   divContainer: {
-    padding: '4%',
+    padding: '4%'
+  },
+  tableContainer: {
     border: '1px black solid'
+
+  },
+  tableHeader: {
+    fontSize: '10rem',
+    color: '#fff',
+    // backgroundColor: 'black'
   }
 }
 
 class AdminView extends Component {
 
+
   render() {
     return (
       <div className={this.props.classes.divContainer}>
         <h2>Feedback Results</h2>
-        <Table>
-          <TableHead>
-            <TableRow>
+        <Table className={this.props.classes.tableContainer}>
+          <TableHead className={this.props.classes.tableHeader}>
+            <TableRow >
               <TableCell>Feeling</TableCell>
               <TableCell>Comprehension</TableCell>
               <TableCell>Support</TableCell>
@@ -30,7 +40,7 @@ class AdminView extends Component {
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
-          <AdminTableBody />
+          <AdminTableBody/>
         </Table>
       </div>
     )
@@ -38,4 +48,4 @@ class AdminView extends Component {
 }
 
 const StyledAdminView = withStyles(styles)(AdminView);
-export default StyledAdminView
+export default StyledAdminView;
