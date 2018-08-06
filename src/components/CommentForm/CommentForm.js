@@ -13,8 +13,8 @@ const styles = () => ({
     margin: '1.5rem auto',
     padding: '1.5rem 2rem',
     backgroundColor: 'white',
-    height: '16.5rem',
-    width: '35rem'
+    height: '25%',
+    width: '75%'
   },
   formTitle: {
     color: 'black',
