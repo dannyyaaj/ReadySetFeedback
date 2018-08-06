@@ -12,11 +12,15 @@ import FormLabel from '@material-ui/core/FormLabel';
 const styles = () => ({
   container: {
     textAlign: 'center',
-    margin: '1.5rem 0'
+    margin: '1.5rem auto',
+    padding: '1.5rem 2rem',
+    backgroundColor: 'white',
+    height: '16.5rem',
+    width: '35rem'
   },
   formTitle: {
     color: 'black',
-    marginBottom: '1rem',
+    marginBottom: '1rem'
   }
 })
 class FeedbackForm extends Component {

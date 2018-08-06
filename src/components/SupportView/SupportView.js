@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import NextButton from '../NextButton/NextButton'
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
+import { Card, CardActions, CardContent } from '@material-ui/core';
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = {
+  card: {
+    margin: '0 auto',
+    width: '50%',
+    backgroundColor: '#DCEFF5',
+  },
+  cardActions: {
+    padding: '0 40%'
+  },
+}
 class SupportView extends Component {
   constructor(props) {
     super(props);
@@ -42,18 +55,24 @@ class SupportView extends Component {
 
   render() {
     return (
-      <div>
-        <FeedbackForm
-          formTitle={this.state.formTitle}
-          view={this.state.supportResponse}
-          handleChangeForResponse={this.handleChangeForResponse}
-          lowestScoreLabel={this.state.lowestScoreLabel}
-          highestScoreLabel={this.state.highestScoreLabel}
-        />
-        <NextButton handleNextButton={this.handleNextButton} />
-      </div>
+      <Card className={this.props.classes.card}>
+        <CardContent>
+          <FeedbackForm
+            formTitle={this.state.formTitle}
+            view={this.state.supportResponse}
+            handleChangeForResponse={this.handleChangeForResponse}
+            lowestScoreLabel={this.state.lowestScoreLabel}
+            highestScoreLabel={this.state.highestScoreLabel}
+          />
+          <CardActions className={this.props.classes.cardActions}>
+            <NextButton handleNextButton={this.handleNextButton} />
+          </CardActions>
+        </CardContent>
+      </Card>
     )
   }
 }
 
-export default connect()(SupportView);
+const StyledSupportView = withStyles(styles)(SupportView)
+
+export default connect()(StyledSupportView);
