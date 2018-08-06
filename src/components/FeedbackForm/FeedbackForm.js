@@ -22,7 +22,6 @@ const styles = () => ({
 class FeedbackForm extends Component {
 
   render() {
-    console.log(this.props.view)
     return (
       <div className={this.props.classes.container}>
         <form onSubmit={this.handleChangeForResponse}>
