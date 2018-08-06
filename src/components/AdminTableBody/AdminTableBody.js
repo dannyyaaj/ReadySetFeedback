@@ -41,7 +41,6 @@ class AdminTableBody extends Component {
   };
 
   displayFeedback = () => {
-    
     axios.get('/api/feedback')
       .then(response => {
         this.setState({
