@@ -84,8 +84,6 @@ class CommentView extends Component {
   }
 
   render() {
-    console.log(this.props.feedback, 'redux state');
-    console.log(this.state.commentResponse, 'local state')
     return (
       <Card className={this.props.classes.card}>
         <CardContent>
