@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CommentForm from '../CommentForm/CommentForm';
 import SubmitButton from '../SubmitButton/SubmitButton';
 import axios from 'axios';
-import { Card, CardActions, CardContent } from '@material-ui/core';
+import { Card, CardActions, CardContent, Grid } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = {
@@ -85,6 +85,8 @@ class CommentView extends Component {
 
   render() {
     return (
+      <Grid container justify="center">
+      <Grid item xs={10}>
       <Card className={this.props.classes.card}>
         <CardContent>
           <CommentForm
@@ -97,6 +99,8 @@ class CommentView extends Component {
           </CardActions>
         </CardContent>
       </Card>
+      </Grid>
+      </Grid>
     )
   }
 }

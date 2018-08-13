@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import NextButton from '../NextButton/NextButton';
-import { Card, CardActions, CardContent } from '@material-ui/core';
+import { Card, CardActions, CardContent, Grid } from '@material-ui/core';
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -70,38 +70,42 @@ class ComprehensionView extends Component {
 
   render() {
     return (
-      <Card className={this.props.classes.card}>
-        <CardContent>
-          <FeedbackForm
-            formTitle={this.state.formTitle}
-            view={this.state.comprehensionResponse}
-            handleChangeForResponse={this.handleChangeForResponse}
-            lowestScoreLabel={this.state.lowestScoreLabel}
-            highestScoreLabel={this.state.highestScoreLabel}
-          />
-          <CardActions className={this.props.classes.cardActions}>
-            <NextButton handleNextButton={this.handleNextButton} />
-          </CardActions>
-        </CardContent>
-        <Dialog
-          open={this.state.responseModalIsOpen}
-          onClose={this.closeResponseModal}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Wait"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Please respond before moving forward.
+      <Grid container justify="center">
+        <Grid item xs={10}>
+          <Card className={this.props.classes.card}>
+            <CardContent>
+              <FeedbackForm
+                formTitle={this.state.formTitle}
+                view={this.state.comprehensionResponse}
+                handleChangeForResponse={this.handleChangeForResponse}
+                lowestScoreLabel={this.state.lowestScoreLabel}
+                highestScoreLabel={this.state.highestScoreLabel}
+              />
+              <CardActions className={this.props.classes.cardActions}>
+                <NextButton handleNextButton={this.handleNextButton} />
+              </CardActions>
+            </CardContent>
+            <Dialog
+              open={this.state.responseModalIsOpen}
+              onClose={this.closeResponseModal}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+            >
+              <DialogTitle id="alert-dialog-title">{"Wait"}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Please respond before moving forward.
               </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.closeResponseModal} color="primary">
-              Okay
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={this.closeResponseModal} color="primary">
+                  Okay
             </Button>
-          </DialogActions>
-        </Dialog>
-      </Card>
+              </DialogActions>
+            </Dialog>
+          </Card>
+        </Grid>
+      </Grid>
     )
   }
 }
